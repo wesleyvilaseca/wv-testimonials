@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Plugin Name: MV Testimonials
+* Plugin Name: WV Testimonials
 * Plugin URI: https://www.wordpress.org/wv-testimonials
 * Description: My plugin's description
 * Version: 1.0
