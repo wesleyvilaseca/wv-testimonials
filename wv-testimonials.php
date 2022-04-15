@@ -32,8 +32,10 @@ if( !class_exists( 'WV_Testimonials' ) ){
         public function __construct() {
 
             // Define constants used througout the plugin
-            $this->define_constants();           
-
+            $this->define_constants();
+            
+            require_once(WV_TESTIMONIALS_PATH . 'post-types/class.wv-testimonials-cpt.php');
+            $WVTestmonialsPostType = new WV_Testimonials_Post_Type();
         }
 
          /**
@@ -57,6 +59,7 @@ if( !class_exists( 'WV_Testimonials' ) ){
          * Deactivate the plugin
          */
         public static function deactivate(){
+            unregister_post_type('wv-testimonials');
             flush_rewrite_rules();
         }
 
