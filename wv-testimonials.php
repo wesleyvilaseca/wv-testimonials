@@ -34,8 +34,19 @@ if( !class_exists( 'WV_Testimonials' ) ){
             // Define constants used througout the plugin
             $this->define_constants();
             
+            /**
+             * custom post typo classes
+             */
             require_once(WV_TESTIMONIALS_PATH . 'post-types/class.wv-testimonials-cpt.php');
             $WVTestmonialsPostType = new WV_Testimonials_Post_Type();
+
+            /**
+             * widgets classes
+             */
+            require_once(WV_TESTIMONIALS_PATH . 'widgets/class.wv-testimonials-widget.php');
+            $WVTestmonialsPostType = new WV_Testimonials_Widget();
+
+
         }
 
          /**
