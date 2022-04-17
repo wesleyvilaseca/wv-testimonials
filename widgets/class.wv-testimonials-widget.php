@@ -16,15 +16,29 @@ class WV_Testimonials_Widget extends WP_Widget
         add_action('widgets_init', function () {
             register_widget('WV_Testimonials_Widget');
         });
+
+        if (is_active_widget(false, false, $this->id_base)) add_action('wp_enqueue_scripts', [$this, 'enqueue']);
+    }
+
+    public function enqueue()
+    {
+        wp_enqueue_style(
+            'wv-testimonials-style-css',
+            WV_TESTIMONIALS_URL . 'assets/css/frontend.css',
+            [],
+            WV_TESTIMONIALS_VERSION,
+            'all'
+        );
     }
 
     public function form($instance)
     {
-        include(WV_TESTIMONIALS_PATH . 'widgets/forms/testimonials/form.php');
+        require(WV_TESTIMONIALS_PATH . 'widgets/forms/testimonials/form.php');
     }
 
     public function widget($args, $instance)
     {
+        require(WV_TESTIMONIALS_PATH . 'widgets/forms/testimonials/front.php');
     }
 
     public function update($newinstance, $oldinstance)
