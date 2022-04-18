@@ -38,7 +38,7 @@ class WV_Testimonials_Widget extends WP_Widget
 
     public function widget($args, $instance)
     {
-        require(WV_TESTIMONIALS_PATH . 'widgets/forms/testimonials/front.php');
+        require(WV_TESTIMONIALS_PATH . 'widgets/front/testimonials/front.php');
     }
 
     public function update($newinstance, $oldinstance)

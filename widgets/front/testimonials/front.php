@@ -58,5 +58,8 @@ if ($testimonials->have_posts()) :
     endwhile;
     wp_reset_postdata();
 endif;
+?>
+<a href="<?= get_post_type_archive_link('wv-testimonials') ?>"><?= esc_html_e('Show More Testminials', 'wv-testimonials') ?></a>
+<?php
 echo $args['after_widget'];
 ?>
