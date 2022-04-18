@@ -61,12 +61,13 @@ if (!class_exists('WV_Testimonials')) {
             define('WV_TESTIMONIALS_PATH', plugin_dir_path(__FILE__));
             define('WV_TESTIMONIALS_URL', plugin_dir_url(__FILE__));
             define('WV_TESTIMONIALS_VERSION', '1.0.0');
+            define('WV_TESTIMONIALS_OVERRIDE_PATH_DIR', get_stylesheet_directory() . '/wv-testimonials/');
         }
 
         public function load_custom_archive_template($tpl)
         {
             if (current_theme_supports('wv-testimonials'))
-                if (is_post_type_archive('wv-testimonials')) $tpl = WV_TESTIMONIALS_PATH . 'views/templates/archive-wv-testimonials.php';
+                if (is_post_type_archive('wv-testimonials')) $tpl = $this->get_template_part_location('archive-wv-testimonials.php');
 
             return $tpl;
         }
@@ -74,9 +75,19 @@ if (!class_exists('WV_Testimonials')) {
         public function load_custom_single_template($tpl)
         {
             if (current_theme_supports('wv-testimonials'))
-                if (is_singular('wv-testimonials')) $tpl = WV_TESTIMONIALS_PATH . 'views/templates/single-wv-testimonials.php';
+                if (is_singular('wv-testimonials')) $tpl = $this->get_template_part_location('single-wv-testimonials.php');
 
             return $tpl;
+        }
+
+        public function get_template_part_location($file)
+        {
+            if (file_exists(WV_TESTIMONIALS_OVERRIDE_PATH_DIR . $file))
+                $file = WV_TESTIMONIALS_OVERRIDE_PATH_DIR . $file;
+            else
+                $file = WV_TESTIMONIALS_PATH . 'views/templates/' . $file;
+
+            return $file;
         }
 
         /**
