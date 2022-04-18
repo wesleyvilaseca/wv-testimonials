@@ -112,6 +112,19 @@ if (!class_exists('WV_Testimonials')) {
          */
         public static function uninstall()
         {
+            delete_option('widget_wv-testimonials');
+
+            $posts = get_posts(
+                [
+                    'post_type' => 'wv-testimonials',
+                    'number' =>  -1,
+                    'post_status' => 'any'
+                ]
+            );
+
+            foreach ($posts as $post) {
+                wp_delete_post($post->ID, true);
+            }
         }
     }
 }
